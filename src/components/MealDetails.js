@@ -1,8 +1,6 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-                {/* <Text style={styles.category}>{item.strCategory}</Text>
-                <Text style={styles.Ingredient}>{item.strIngredient1}</Text> */}
-
+    
 
 export default function MealDetails({mealResult}) {
   return (

@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View, FlatList, Image, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image, ScrollView } from 'react-native'
 import React from 'react'
 import MealDetails from './MealDetails'
 
-export default function MealList({title, results}) {
+export default function MealList({title, navigation, results}) {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.titleHeader}> {title}</Text>
@@ -14,7 +14,11 @@ export default function MealList({title, results}) {
       renderItem={({item})=>{
           
         return  (
-            <MealDetails mealResult={item} /> 
+          <TouchableOpacity 
+          onPress={()=> navigation.navigate("MealShowSreen",{id: item.idMeal}) }>
+            
+            <MealDetails mealResult={item}   /> 
+          </TouchableOpacity>
 
 
         
@@ -64,3 +68,8 @@ const styles = StyleSheet.create({
         fontWeight:"bold"
     },
 })
+
+
+
+
+
