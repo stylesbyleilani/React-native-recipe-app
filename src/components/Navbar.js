@@ -1,14 +1,27 @@
 
-
-
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
+
 const NavigationBar = () => {
-  const handlePress = (buttonName) => {
-    console.log(`${buttonName} pressed`);
-    // Add your navigation logic here
+  const navigation = useNavigation();
+
+  const handlePress = (screenName) => {
+    if (screenName === 'PLUS') {
+      console.log('PLUS pressed');
+      return;
+    }
+    
+    const screens = {
+      home: 'Search',
+      heart: 'HeartScreen',
+      plus: 'AddRecipeScreen',
+      // search: 'SearchScreen'
+    };
+
+    navigation.navigate(screens[screenName]);
   };
 
   return (
@@ -17,25 +30,25 @@ const NavigationBar = () => {
         style={styles.iconButton} 
         onPress={() => handlePress('home')}
       >
-<Ionicons name="home-outline" size={24} color="#656565" />
+        <Ionicons name="home-outline" size={24} color="#656565" />
       </TouchableOpacity>
 
       <TouchableOpacity 
         style={styles.iconButton}
-        onPress={() => handlePress('plus')}
-      >
+        onPress={() => handlePress('heart')}>
         <AntDesign name="hearto" size={24} color="#656565" />
-        </TouchableOpacity>
-
-<View style={styles.pluswrapper}>
-      <TouchableOpacity 
-        style={styles.iconPlusButton} 
-        onPress={() => handlePress('heart')}
-      >
-     <AntDesign name="plus" size={24} color="white" />
       </TouchableOpacity>
 
-</View>
+      <View style={styles.pluswrapper}>
+        <TouchableOpacity 
+          style={styles.iconPlusButton} 
+          onPress={() => handlePress('plus')}
+          // onPress={() => handlePress('message')}
+
+        >
+          <AntDesign name="plus" size={24} color="white" />
+        </TouchableOpacity>
+      </View>
 
       <TouchableOpacity 
         style={styles.iconButton} 
@@ -44,16 +57,16 @@ const NavigationBar = () => {
         <AntDesign name="message1" size={24} color="#656565" />
       </TouchableOpacity>
 
-<TouchableOpacity 
-style={styles.iconButton} 
-onPress={() => handlePress('message')}  
->
-<AntDesign name="search1" size={24} color="#656565" />
-</TouchableOpacity>
-
+      <TouchableOpacity 
+        style={styles.iconButton} 
+        onPress={() => handlePress('search')}  
+      >
+        <AntDesign name="search1" size={24} color="#656565" />
+      </TouchableOpacity>
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
@@ -83,5 +96,4 @@ top: -10,
 
   },
 });
-
-export default NavigationBar;
+export default NavigationBar

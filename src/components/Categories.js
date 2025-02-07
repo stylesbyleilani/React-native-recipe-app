@@ -53,8 +53,7 @@ import meal from '../api/meal'
 export default function Categories({ onCategorySelect }) {
   const [categories, setCategories] = useState([])
   const [selectedCategory, setSelectedCategory] = useState(null)
-console.log(categories , "cat")
-console.log(selectedCategory, "sel")
+
   const getCategories = async () => {
     try {
       const response = await meal.get('/categories.php')
